@@ -71,14 +71,14 @@ for i, spellID in ipairs(SPELLS) do
     local icon = wheel:CreateTexture(nil, "BORDER")
     icon:SetSize(ICON_SIZE, ICON_SIZE)
     icon:SetPoint("CENTER", x, y)
-    icon:SetTexture(C_Spell.GetSpellTexture(spellID))
 
     local mask = wheel:CreateMaskTexture()
     mask:SetAtlas("gamepad-flyout-circular-slot-mask", true)
     mask:SetPoint("CENTER", icon)
     icon:AddMaskTexture(mask)
 
-    local border = wheel:CreateTexture(nil, "ARTWORK")
+    -- Below the icon, as in FlyoutRadial.lua (NormalTexture: BACKGROUND)
+    local border = wheel:CreateTexture(nil, "BACKGROUND", nil, 3)
     border:SetAtlas("gamepad-flyout-circular-slot-normal", true)
     border:SetPoint("CENTER", icon)
 
@@ -119,6 +119,7 @@ end)
 
 wheel:HookScript("OnShow", function()
     for _, s in ipairs(slots) do
+        s.icon:SetTexture(C_Spell.GetSpellTexture(s.spellID))
         s.icon:SetDesaturated(not C_SpellBook.IsSpellKnown(s.spellID))
     end
 end)
