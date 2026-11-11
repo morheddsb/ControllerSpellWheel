@@ -206,6 +206,16 @@ events:SetScript("OnEvent", function(_, event)
     UpdateStickIndex()
 end)
 
+-- /csw keys: prints the name of each gamepad button press, to see whether the
+-- right stick's directions arrive as PADRSTICK* presses. Returning true passes
+-- the press on, so the buttons keep working (FlyoutRadial.lua does the same).
+local keyLog = NewFrame("Frame", nil, UIParent)
+keyLog:SetScript("OnGamePadButtonDown", function(_, key)
+    Print(key)
+    return true
+end)
+local logging = false
+
 SLASH_CONTROLLERSPELLWHEEL1 = "/csw"
 SlashCmdList.CONTROLLERSPELLWHEEL = function(msg)
     if msg == "capture" then
@@ -216,8 +226,17 @@ SlashCmdList.CONTROLLERSPELLWHEEL = function(msg)
         ControllerSpellWheelDB.capture = not ControllerSpellWheelDB.capture
         wheel:SetAttribute("capture", ControllerSpellWheelDB.capture)
         Print("Camera lock while the wheel is open: " .. (ControllerSpellWheelDB.capture and "on" or "off"))
+    elseif msg == "keys" then
+        if InCombatLockdown() then
+            Print("Can't change that in combat.")
+            return
+        end
+        logging = not logging
+        keyLog:EnableGamePadButton(logging)
+        Print("Gamepad button log: " .. (logging and "on" or "off"))
     else
         Print("Make a macro with: /click ControllerSpellWheel LeftButton true")
         Print("/csw capture - toggle the camera lock while the wheel is open")
+        Print("/csw keys - toggle printing each gamepad button press")
     end
 end

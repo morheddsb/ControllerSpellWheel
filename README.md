@@ -24,6 +24,8 @@ Download `ControllerSpellWheel-<version>.zip` from
 `/csw capture` toggles whether the right stick is kept from turning the camera while the wheel
 is open (on by default).
 
+`/csw keys` toggles printing the name of each gamepad button press in chat, for troubleshooting.
+
 ## How it works
 
 - The wheel and the button are secure frames, so opening, closing and casting work in combat.
