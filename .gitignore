@@ -1,2 +1,13 @@
+# OS / editors
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Release packages
 *.zip
+.release/
+
+# Built zips (tools/package.sh)
+dist/

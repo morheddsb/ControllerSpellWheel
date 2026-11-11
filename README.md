@@ -4,6 +4,12 @@ A World of Warcraft addon for WoW Forever: a gamepad spell wheel like the game's
 wheel (e.g. mage portals), but with spells you choose. Prototype: one wheel with eight rank 1
 mage spells, set in `Core.lua` (`SPELLS`).
 
+## Install
+
+Download `ControllerSpellWheel-<version>.zip` from
+[Releases](https://github.com/morheddsb/ControllerSpellWheel/releases) and unzip it into
+`Interface/AddOns`, or install it through the [WowUp Hub](https://wowup.io/guide/wowup/hub).
+
 ## Use
 
 1. Make a macro with:
@@ -32,3 +38,9 @@ is open (on by default).
 - Other gamepad buttons don't close the wheel (the game's wheel closes on any button).
 - No cooldowns on the wheel.
 - The spells are fixed in `Core.lua`.
+
+## Releasing
+
+Bump `## Version:` in `ControllerSpellWheel.toc`, commit, then push a matching tag (`v<version>`).
+The `Release` workflow builds the zip with `tools/package.sh` and publishes a GitHub release, which
+the [WowUp Hub](https://wowup.io/guide/wowup/hub) picks up.
