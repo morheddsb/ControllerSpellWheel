@@ -209,12 +209,14 @@ end)
 -- /csw keys: prints the name of each gamepad button press, to see whether the
 -- right stick's directions arrive as PADRSTICK* presses. Returning true passes
 -- the press on, so the buttons keep working (FlyoutRadial.lua does the same).
+-- Setting the script turns gamepad input on, so the frame is kept hidden
+-- (hidden frames get no input) until the log is turned on.
 local keyLog = NewFrame("Frame", nil, UIParent)
+keyLog:Hide()
 keyLog:SetScript("OnGamePadButtonDown", function(_, key)
     Print(key)
     return true
 end)
-local logging = false
 
 SLASH_CONTROLLERSPELLWHEEL1 = "/csw"
 SlashCmdList.CONTROLLERSPELLWHEEL = function(msg)
@@ -231,7 +233,8 @@ SlashCmdList.CONTROLLERSPELLWHEEL = function(msg)
             Print("Can't change that in combat.")
             return
         end
-        logging = not logging
+        local logging = not keyLog:IsShown()
+        keyLog:SetShown(logging)
         keyLog:EnableGamePadButton(logging)
         Print("Gamepad button log: " .. (logging and "on" or "off"))
     else
