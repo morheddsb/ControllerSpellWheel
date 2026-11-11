@@ -1,0 +1,8 @@
+## Interface: 16001, 16002, 16003, 16100, 16101, 16200
+## Title: Controller Spell Wheel
+## Notes: A gamepad spell wheel, opened from a macro: flick the right stick to cast.
+## Author: Morten Hedengran
+## Version: 0.1.0
+## SavedVariables: ControllerSpellWheelDB
+
+Core.lua
