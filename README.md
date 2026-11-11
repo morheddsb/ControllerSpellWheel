@@ -26,6 +26,9 @@ is open (on by default).
 
 `/csw keys` toggles printing the name of each gamepad button press in chat, for troubleshooting.
 
+`/csw stickbuttons` toggles the game setting `GamePadStickAxisButtons`, which sends the sticks'
+directions as button presses (needed for flick casting), or says it doesn't exist.
+
 ## How it works
 
 - The wheel and the button are secure frames, so opening, closing and casting work in combat.

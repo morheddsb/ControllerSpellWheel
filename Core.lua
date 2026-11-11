@@ -237,9 +237,24 @@ SlashCmdList.CONTROLLERSPELLWHEEL = function(msg)
         keyLog:SetShown(logging)
         keyLog:EnableGamePadButton(logging)
         Print("Gamepad button log: " .. (logging and "on" or "off"))
+    elseif msg == "stickbuttons" then
+        -- Retail's hidden setting for sending stick directions as PADRSTICK*
+        -- presses; it may not exist in this client.
+        local value = C_CVar.GetCVar("GamePadStickAxisButtons")
+        if value == nil then
+            Print("GamePadStickAxisButtons doesn't exist in this client.")
+            return
+        end
+        if InCombatLockdown() then
+            Print("Can't change that in combat.")
+            return
+        end
+        C_CVar.SetCVar("GamePadStickAxisButtons", value == "1" and "0" or "1")
+        Print("GamePadStickAxisButtons: " .. tostring(C_CVar.GetCVar("GamePadStickAxisButtons")))
     else
         Print("Make a macro with: /click ControllerSpellWheel LeftButton true")
         Print("/csw capture - toggle the camera lock while the wheel is open")
         Print("/csw keys - toggle printing each gamepad button press")
+        Print("/csw stickbuttons - toggle sending stick directions as button presses")
     end
 end

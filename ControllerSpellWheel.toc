@@ -2,7 +2,7 @@
 ## Title: Controller Spell Wheel
 ## Notes: A gamepad spell wheel, opened from a macro: flick the right stick to cast.
 ## Author: Morten Hedengran
-## Version: 0.1.2
+## Version: 0.1.3
 ## SavedVariables: ControllerSpellWheelDB
 
 Core.lua
